@@ -1,0 +1,409 @@
+@mixin flex($j,$a:$j)
+    display: flex
+    justify-content: $j
+    align-items: $a
+
+@mixin size($w,$h:$w)
+    width: $w
+    height: $h
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&family=Teko:wght@700&display=swap')
+
+$orange: #feb000
+$darkgreen: #007013
+$green: #008816
+
+
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    font-family: 'Noto Sans TC','Teko', sans-serif
+
+h2
+     font-family: 'Teko', sans-serif
+
+.container
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    display: flex
+
+    section
+        min-width: 100%
+        height: 100vh
+        position: relative
+a
+    text-decoration: none
+    color: currentColor
+.menu div
+    width: 6vw
+    height: 100%
+    position: fixed
+    left: 0
+    top: 0
+    display: block
+    +flex(center)
+    transition: 0.3s 
+    padding: 0 3vw
+    z-index: 1
+    background-color: $orange
+    cursor: pointer
+
+
+    &:hover
+        background-color: #fff
+        transition: 0.3s 
+        i
+            color: $orange
+            transition: 0.3s 
+    i
+        font-size: 60px
+/*==============選單==========================================*/
+
+.allPage
+    +size(100%)
+    background-color: #fff
+    position: fixed   
+    z-index: 10
+    left: -100%
+    transition: 0.5s 
+    .main
+        +size(100%)
+        display: flex
+        align-items: center
+        position: relative
+
+        .nav_close
+            position: absolute
+            left: 0
+            font-size: 60px
+            padding: 0 2vw
+            cursor: pointer
+
+.show
+    left: 0
+    transition: 0.7s cubic-bezier(0, 1.15, 0.74, 0.38)
+.active
+    color: $darkgreen
+    
+   
+
+/*-----------------第1部分-----------------------*/
+
+.orangePart
+    background-color: $orange
+.center
+    display: grid
+    place-content: center
+    height: 100vh
+.main
+    display: flex
+    align-items: center
+    justify-content: center
+    z-index: 1    
+.text
+
+    h2
+        font-size: 10vw
+        color: #fff
+        line-height: 1.2em
+        letter-spacing: 10px
+    p
+        color: #fff
+        font-family: 'Noto Sans TC', sans-serif
+        font-size: 0.9vw
+        letter-spacing: 1px
+
+.bottle
+    max-width: 12vw
+    transform: rotate(15deg)
+    margin-left: 8vw
+    z-index: 1
+    
+
+    img
+        width: 100%
+        filter: brightness(110%)
+        animation: float 1s infinite alternate
+
+    @keyframes float
+        0%
+            transform: translateY(20px)
+        100%
+            transform: translateY(0px)
+
+.middle
+    position: relative
+    max-width: 900px
+    left: 50%
+    top: 50%
+    transform: translate(-20%)
+    .ball
+        +size(20px)
+        background-color: #fff
+        border-radius: 50%
+        position: absolute
+        animation: ball 4s infinite alternate    
+        
+    @keyframes ball
+        0%
+            transform: translateX(10px)
+        50%
+            background: rgba(#fff,0.2)
+            +size(60px)
+        100%
+            transform: translate(200px,500px)
+
+    
+    @for $i from 1 through 30
+        .container#{$i}
+            transform: rotate(#{$i*360/30}deg)            
+
+            .ball
+                animation-delay: $i*-0.1s
+
+/*=============第2部分==============================*/
+
+.greenPart
+    background: radial-gradient(circle at center,$green,$darkgreen)
+    +flex(center)
+    position: relative
+
+    &::after
+        content: ""
+        background: url('images/engword.png') center no-repeat
+        background-size: contain
+        +size(40%)
+        display: block
+        position: absolute
+        top: calc( 8% - 20px  )
+        left: calc( 28% - 60px  )
+        transform: rotate(-15deg)
+        opacity: 0.3
+
+    .orange
+        flex-basis: 40%
+        padding-top: 5vw
+        animation: float 1s infinite alternate
+
+        img
+            width: 75%
+            filter: brightness(110%)
+
+    .ingradient
+        padding-top: 15vw
+        flex-basis: 45%
+        div
+            display: flex     
+            align-items: baseline
+            vertical-align: middle 
+            .square
+                +size(30px,70px)
+                background-color: $orange
+                
+            h2
+                font-size: 7vw
+                margin-left: 2vw
+                color: #fff
+        p
+            font-size: 2vw
+            color:#fff
+            letter-spacing: 2px
+            line-height: 3.8vw
+            padding-left: 5vw
+
+/*==================產地=================*/
+
+.container .placeOrigin
+    display: flex
+    min-width: 90vw
+
+    .pic
+        background: url('images/orange_woman.png') center no-repeat
+        background-size: cover
+        width: 40vw
+    .desc
+        transform: translateY(20%)
+        margin: 2vw 0 0 10vw
+        h2
+            font-size: 6vw
+            color:#64a600
+            line-height: 6vw
+            letter-spacing: 10px
+        .square
+            +size(22vw,0.6vw)
+            border: 1px solid #000
+            margin:0px 0 50px 220px
+
+        p
+            letter-spacing: 2px
+            line-height: 2.8vw
+            font-size: 1vw
+
+/*===========PART 4=================================*/
+.page-4
+    display: grid
+    place-content: center
+    gap: 1ch
+.page-4 > div
+    display: flex
+    align-items: center
+    .desc
+        padding-right: 10vw
+        z-index: 2
+
+        &::before,&::after
+            font-size: 12vw
+            position: absolute
+            z-index: -1
+            opacity: 0.1
+            letter-spacing: 10px
+            font-family: 'Teko'
+        &::before
+            content: "ORANGE"
+            left: -8vw
+            top: 3vw
+        &::after
+            content: "JUICE"
+        
+        
+        h2
+            font-size: 1.8vw
+            margin-bottom: 50px  
+            letter-spacing: 4px   
+            text-align: center       
+        p
+            width: 25vw
+            font-size: 1.1vw
+            line-height: 2em
+            letter-spacing: 2px
+        .btn
+            float: right
+            margin: 80px 10px 0 0
+            font-size: 20px
+            a 
+                transition: 0.3s ease
+                display: block
+                font-family: 'Teko'
+                i
+                    transition: 0.3s ease
+                    padding-left: 5px
+            &:hover 
+                i
+                    transform: translateX(10px)
+                    transition: 0.3s ease
+
+    .pic
+        max-width: 13vw
+        img
+            width: 100%
+            filter: brightness(105%)
+
+/*================PART 5=========================*/
+
+.page-5
+    display: flex
+    width: 100%
+.left
+    margin: 0 0 0 -10vw
+.title
+    margin: 4vw 0 0 2vw
+    h2
+        font-size: 7vw
+        letter-spacing: 10px
+        opacity: 0.2
+        margin-bottom: -2.5vw
+    .company
+        display: flex
+        align-items: center
+        p
+            font-weight: bold
+        .square
+            +size(25vw,.4vw)
+            border: 1px solid #000
+            margin-left: .38vw
+
+table
+    position: absolute
+    margin: 8vw 0 0 5vw
+    font-size: 1.2vw
+
+    tr
+        display: flex
+        justify-content: space-between
+        font-family: 'Noto Sans TC', sans-serif
+        text-align: left
+
+        &:nth-last-child(1)
+            th,td
+                border-bottom: 1px solid rgba(#000,0.7)
+            
+
+        th,td
+            border-top: 1px solid rgba(#000,0.7)
+            align-items: center
+            padding: 1.2vw 0
+        
+        th
+            width: 8vw
+            margin-right: 3vw
+        td
+            width: 25vw
+
+.waves
+    height: 100%
+    left: 44vw
+    bottom: 0
+    background-color: #eac11d
+    width: 10%
+    position: absolute
+    z-index: 2
+    
+.wave
+    background:  url('images/wave.png')  repeat-x
+    background-size: contain
+    width: 100%
+    min-height: 10%
+    transform: rotate(270deg)
+    z-index: 1
+    animation-fill-mode: both
+    
+
+#wave1
+    opacity: 1
+    bottom: 0
+    animation: animatWave 10s linear infinite alternate
+
+@keyframes animatWave
+    0%
+        background-position-x:  3000px
+    100%
+        background-position-x:  0px
+
+@media screen and (max-width: 1000px)
+    
+    .menu div
+        width: 100%
+        height: 6vw
+        padding: 0 3vw
+        background-color: transparent
+        display: block
+        i
+            font-size: 10vw
+            transform: rotate(90deg)
+    .main
+        flex-direction: column
+    .bottle
+        max-width: 50vw
+
+
+
+
+
+
+
+
+
+
