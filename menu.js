@@ -46,10 +46,4 @@ window.addEventListener('scroll', scrollActive)
     })
 }*/
 
-$(".nav-2").click(function(){
-    $('.container').velocity({
-        translateX: "30px"
-    })
-})
-
 
